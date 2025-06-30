@@ -1,20 +1,25 @@
-function AddTodo(){
-    return<div className="container text-center">
-      <div className="row kg-row">
-        <div className="col-6">
-          <input type="text" placeholder="Enter Todo Here" />
-        </div>
-        <div className="col-4">
-          <input type="date" />
-        </div>
-        <div className="col-2">
-          <button type="button" className="btn btn-success kg-button">
-            Add
-          </button>
-        </div>
-      </div>
-      </div>
+import React, { useState } from 'react';
 
-}
+const AddTodo = ({ onAdd }) => {
+  const [todoName, setTodoName] = useState('');
+
+  const handleAddClick = () => {
+    if (todoName.trim() === '') return;
+    onAdd(todoName);
+    setTodoName('');
+  };
+
+  return (
+    <div className="add-todo">
+      <input 
+        type="text" 
+        placeholder="Enter Todo Here" 
+        value={todoName} 
+        onChange={(e) => setTodoName(e.target.value)}
+      />
+      <button onClick={handleAddClick} className="btn btn-success m-2">Add</button>
+    </div>
+  );
+};
 
 export default AddTodo;

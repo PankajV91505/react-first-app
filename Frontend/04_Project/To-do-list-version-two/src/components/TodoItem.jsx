@@ -1,15 +1,15 @@
-function TodoItem({todoname, todoDate}) {
-    return <div className="container text-center">
-    <div className="row kg-row">
-        <div className="col-6">{todoname}</div>
-        <div className="col-4">{todoDate}</div>
+const TodoItem = ({ name, date, onDelete }) => {
+  return (
+    <div className="container text-center">
+      <div className="row m-2">
+        <div className="col-6">{name}</div>
+        <div className="col-4">{date}</div>
         <div className="col-2">
-          <button type="button" className="btn btn-danger kg-button">
-            Delete
-          </button>
+          <button onClick={onDelete} className="btn btn-danger">Delete</button>
         </div>
       </div>
-      </div>
-}
+    </div>
+  );
+};
 
 export default TodoItem;

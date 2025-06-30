@@ -1,11 +1,18 @@
-import TodoItem from "./TodoItem";
+import TodoItem from './TodoItem';
 
-const TodoItems = ({todoItems}) =>{
-    return (
-      <div className="items-container">
-        {todoItems.map(item => <TodoItem  todoname={item.name} todoDate={item.dueDate}></TodoItem>)}
-      </div>
-    );
-}
+const TodoItems = ({ todoItems, onDelete }) => {
+  return (
+    <div className="items-container">
+      {todoItems.map((item, index) => (
+        <TodoItem
+          key={index}
+          name={item.name}
+          date={item.date}
+          onDelete={() => onDelete(index)}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default TodoItems;
