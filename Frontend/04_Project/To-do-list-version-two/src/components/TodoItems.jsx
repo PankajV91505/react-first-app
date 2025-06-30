@@ -1,15 +1,15 @@
-import TodoItem from './TodoItem';
+import TodoItem from "./TodoItem";
+import styles from "./TodoItems.module.css";
 
-const TodoItems = ({ todoItems, onDelete }) => {
+const TodoItems = ({ todoItems, onDeleteClick }) => {
   return (
-    <div className="items-container">
-      {todoItems.map((item, index) => (
+    <div className={styles.itemsContainer}>
+      {todoItems.map((item) => (
         <TodoItem
-          key={index}
-          name={item.name}
-          date={item.date}
-          onDelete={() => onDelete(index)}
-        />
+          todoDate={item.dueDate}
+          todoName={item.name}
+          onDeleteClick={onDeleteClick}
+        ></TodoItem>
       ))}
     </div>
   );
