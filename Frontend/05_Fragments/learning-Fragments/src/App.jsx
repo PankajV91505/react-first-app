@@ -1,45 +1,33 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import React from "react"
+import FoodItems from "./components/FoodItems";
+import ErrorMessage from "./components/ErrorMessage";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import Container from "./components/Container";
+import FoodInput from "./components/FoodInput";
+import { useState } from "react";
+
 function App() {
+  let [foodItems, setFoodItems] = useState([]);
 
-  // return (
-  //   <React.Fragment>
-  //     <h2>Healthy Food</h2>
-  //     <ul class="list-group">
-  //       <li class="list-group-item">Green Vegetables</li>
-  //       <li class="list-group-item">Dal</li>
-  //       <li class="list-group-item">Roti</li>
-  //       <li class="list-group-item">Fruit</li>
-  //       <li class="list-group-item">Sabji</li>
-  //     </ul>
-  //   </React.Fragment>
-  // )
-
-
-
-
-  // let footItems = []
-  let foodItems = ["Green Vegetables",'Dal','roti','milk',"ghee",'sabji']
-
-
-  // if (foodItems.lenght === 0) {
-  //   return <h3>I am still Hungry</h3>
-  // } 
-// if-else statments
-
+  const onKeyDown = (event) => {
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      event.target.value = "";
+      let newItems = [...foodItems, newFoodItem];
+      setFoodItems(newItems);
+    }
+  };
 
   return (
     <>
-      <h2>Healthy Food</h2>
-      // ternary operator 
-      {foodItems.length === 0 ? <h3>I am still Hungry</h3> : null}
-      <ul className="list-group">
-        {foodItems.map((item) =>
-        (<li key={item} className="list-group-item">{item}</li>)
-        )}
-      </ul>
+      <Container>
+        <h1 className="food-heading">Healthy Food</h1>
+        <FoodInput handleKeyDown={onKeyDown}></FoodInput>
+        <ErrorMessage items={foodItems}></ErrorMessage>
+        <FoodItems items={foodItems}></FoodItems>
+      </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
